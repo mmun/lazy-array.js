@@ -1,0 +1,5 @@
+{
+  "boss": true,
+  "browser" : true,
+  "esnext": true
+}
