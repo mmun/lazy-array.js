@@ -1,6 +1,6 @@
 import LazyArray from "lazy-array/lazy-array";
 
-var RUNS = 50;
+var RUNS = 10;
 
 function newRandom(seed) {
   var rng = new RNG(seed);
@@ -10,13 +10,13 @@ function newRandom(seed) {
   };
 }
 
-var counter = 0;
+var guid = 0;
 
 function makeArray(length) {
   var array = [];
 
   for (var i = 0; i < length; i++) {
-    array.push(++counter);
+    array.push(++guid);
   }
 
   return array;
@@ -106,7 +106,7 @@ test("can insert arbitrary length arrays at arbitrary indices", function() {
   var rng = new RNG(0);
   var totalLength = 0;
   var splices = [];
-  for (var i = 0; i < 500; i++) {
+  for (var i = 0; i < 1000; i++) {
     var length = rng.random(0, 10);
     splices.push([rng.random(0, totalLength), 0, length]);
     totalLength += length;
