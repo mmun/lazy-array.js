@@ -1,6 +1,6 @@
 # Lazy Array
 
-A lazy array defers and coalesces insertions and deletions until it is accessed.
+A lazy array defers and coalesces insertions and removals until it is accessed.
 It implements a [rope](http://en.wikipedia.org/wiki/Rope_(data_structure))-like
 interface using an augmented [skip list](http://en.wikipedia.org/wiki/Skip_list).
 
