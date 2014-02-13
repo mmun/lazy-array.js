@@ -1,15 +1,15 @@
 module.exports = function(grunt) {
   grunt.registerTask('dev', [
     'dev-build',
-    'connect:tests',
+    'connect:test',
     'watch:dev-build'
   ]);
 
   grunt.registerTask('dev-build', [
     'clean',
     'jshint', 
-    'transpile:lib', 'transpile:tests', 
-    'concat:lib', 'concat:tests'
+    'transpile:lib', 'transpile:test', 
+    'concat:lib', 'concat:test'
   ]);
 
   grunt.loadNpmTasks('grunt-contrib-clean');
@@ -29,16 +29,16 @@ module.exports = function(grunt) {
         src: 'tmp/transpiled/lib/**/*.js',
         dest: 'tmp/assets/lib.js'
       },
-      'tests': {
-        src: 'tmp/transpiled/tests/**/*.js',
-        dest: 'tmp/assets/tests.js'
+      'test': {
+        src: 'tmp/transpiled/test/**/*.js',
+        dest: 'tmp/assets/test.js'
       }
     },
 
     connect: {
-      'tests': {
+      'test': {
         options: {
-          base: ['bower_components', 'tmp', 'test']
+          base: ['bower_components', 'tmp', 'test-env']
         }
       }
     },
@@ -74,14 +74,16 @@ module.exports = function(grunt) {
         }]
       },
 
-      'tests': {
-        moduleName: '<%= pkg.name %>/tests',
+      'test': {
+        moduleName: function(path) {
+          return grunt.config.process('<%= pkg.name %>/test') + path;
+        },
         type: 'amd',
         files: [{
           expand: true,
           cwd: 'test',
           src: '**/*.js',
-          dest: 'tmp/transpiled/tests'
+          dest: 'tmp/transpiled/test'
         }]
       }
     }
