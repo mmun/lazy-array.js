@@ -1,6 +1,6 @@
 import { splicesEqual } from "lazy-array/test/helpers";
 
-module("LazyArray - Bulk");
+module("Lazy Array - Bulk operations");
 
 test("can insert single element arrays in order", function() {
   var splices = [];
@@ -51,7 +51,7 @@ test("can insert and remove arbitrary length arrays at arbitrary indices", funct
   var rng = new RNG();
   var index, removeCount, insertCount, totalLength = 0;
   var splices = [];
-  for (var i = 0; i < 2500; i++) {
+  for (var i = 0; i < 100; i++) {
     index = rng.random(0, totalLength + 1);
     removeCount = rng.random(0, (totalLength - index) + 1);
     insertCount = rng.random(0, 100);

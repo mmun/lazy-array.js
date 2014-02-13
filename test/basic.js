@@ -1,6 +1,6 @@
 import { splicesEqual } from "lazy-array/test/helpers";
 
-module("LazyArray - Basic operations");
+module("Lazy Array - Basic operations");
 
 test("can make initial insertion", function() {
   var splices = [];
