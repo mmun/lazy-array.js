@@ -12,6 +12,10 @@
   <script src="assets/lib.js"></script>
   <script src="assets/test.js"></script>
   <script>
+    require(['lazy-array/debug'], function(debug) {
+      debug.env.debugging = false;
+    });
+
     require([
       'lazy-array/test/basic',
       'lazy-array/test/bulk'

@@ -45,7 +45,7 @@ module.exports = function(grunt) {
 
     watch: {
       'dev-build': {
-        files: ['lib/**', 'test/**'],
+        files: ['lib/**', 'test/**', 'test-env/**'],
         tasks: ['dev-build'],
         options: {
           livereload: true

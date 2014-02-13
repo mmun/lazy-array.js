@@ -1,5 +1,4 @@
 import LazyArray from "lazy-array/lazy-array";
-import env from "lazy-array/test/env";
 
 function newRandom(seed) {
   var rng = new RNG(seed);
@@ -21,13 +20,22 @@ function makeArray(length) {
   return array;
 }
 
-function splicesEqual(splices, comment) {
-  var i, j, basic, lazy, splice, array;
+// Verifies that a sequence of splice operations gives the same result
+// when applied to lazy array as when applied to a normal array. The
+// splices are expected of the form [index, removeCount, insertCount].
+//
+// Because skip lists are a probabilistic data structure, we run the
+// tests several times with a different seed to increase confidence
+// of correctness.
+var RUNS = 25;
 
-  for (i = 0; i < env.runs; i++) {
+function splicesEqual(splices, comment) {
+  var i, j, normal, lazy, splice, array;
+
+  for (i = 0; i < RUNS; i++) {
     itemId = 0;
 
-    basic = [];
+    normal = [];
     lazy = new LazyArray();
     lazy.random = newRandom(i);
 
@@ -36,10 +44,10 @@ function splicesEqual(splices, comment) {
       array = makeArray(splice[2]);
 
       lazy.replace(splice[0], splice[1], array);
-      basic.splice.apply(basic, splice.slice(0,2).concat(array));
+      normal.splice.apply(normal, splice.slice(0,2).concat(array));
     }
 
-    deepEqual(lazy.flatten(), basic, comment);
+    deepEqual(lazy.flatten(), normal, comment);
   }
 }
 
